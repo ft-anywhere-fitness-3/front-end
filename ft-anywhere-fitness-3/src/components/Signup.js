@@ -56,7 +56,7 @@ const Signup = () => {
                             <span>Password</span>
                             <input type='password' name='password' id='password' onChange={handleChange} value={credentials.password}/>
                         </div>
-                        <div className='remember'>
+                        <div>
                             <label><input onChange={handleChange} type='checkbox' name='instructor' value={isInstructor} /> Instructor? </label>
                         </div>
                         <div className='input-div'>
@@ -67,9 +67,6 @@ const Signup = () => {
                         </div>
                     </form>
                 </div>
-            </div>
-            <div className='img-div'>
-                <img src='' alt='alt text'/>
             </div>
 		</StyledSignup>
 	)
