@@ -8,7 +8,7 @@ export default function Home() {
         history.push('/signup');
     }
 
-    const routeToLogin = () =>{
+    const routeToLogin = () => {
         history.push('/login');
     }
 
@@ -19,18 +19,20 @@ export default function Home() {
                 src='fitness.jpg'
                 alt='Blurry fitness'
             />
-            <button id='signup-btn'
-                onClick={routeToSignup}
-                className='md-button signup-button'
-            >
-                Signup!
-            </button>
-            <button id='login-btn'
-                onClick={routeToLogin}
-                className='md-button login-button'
-            >
-                Login!
-            </button>
+            <div className='front-buttons'>
+                <button id='signup-btn'
+                    onClick={routeToSignup}
+                    className='md-button signup-button'
+                >
+                    Signup!
+                </button>
+                <button id='login-btn'
+                    onClick={routeToLogin}
+                    className='md-button login-button'
+                >
+                    Login!
+                </button>
+            </div>
         </div>
     )
 }

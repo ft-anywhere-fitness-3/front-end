@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import axios from "axios";
 import { Link } from 'react-router-dom'
 import { useHistory } from "react-router";
-
 import StyledSignup from "../styledComponents/StyledSignup";
 
 const initialState = {
@@ -67,7 +66,7 @@ const Signup = () => {
                                 </label>
                             </div>
                             <div className='checkbox-div'>
-                                <label><input onChange={handleChange} type='checkbox' name='instructor' value={isInstructor} />  Instructor?</label>
+                                <label>Instructor?<input onChange={handleChange} type='checkbox' name='instructor' value={isInstructor} />  </label>
                             </div>
                             <div className='signup-div'>
                                 <button className='md-button'>Sign up</button>

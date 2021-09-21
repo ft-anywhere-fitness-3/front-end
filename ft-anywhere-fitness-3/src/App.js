@@ -5,6 +5,7 @@ import './App.css';
 import ClassForm from './components/ClassForm';
 import Instructor from './components/Instructor';
 import Signup from './components/Signup';
+import Login from './components/Login';
 import Header from './components/Header';
 import Home from './components/Home';
 import StyledApp from './styledComponents/StyledApp';
@@ -20,6 +21,7 @@ function App() {
     <StyledApp className='App'>
       <Header />
       <Switch>
+        <Route path='/login' component={Login} />
         <Route path='/signup' component={Signup} />
         {/* These routes will need to be made into private routes eventually */}
         <Route path='/client' component={Client}/>
