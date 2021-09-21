@@ -1,7 +1,8 @@
 import styled from "styled-components";
 
 const StyledInstructor = styled.div`
-    text-align: center;
+    display: flex;
+    justify-content: center;
 `
 
 export default StyledInstructor;
