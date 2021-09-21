@@ -14,8 +14,7 @@ justify-content: center;
   padding: 20px 0 30px 0;
   }
 
-  input,
-.btn {
+  input {
   width: 100%;
   padding: 12px;
   border: none;
@@ -28,8 +27,7 @@ justify-content: center;
   text-decoration: none; 
 }
 
-input:hover,
-.btn:hover {
+input:hover {
   opacity: 1;
 }
 
