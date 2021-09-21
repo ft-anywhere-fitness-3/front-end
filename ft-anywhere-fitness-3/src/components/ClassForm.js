@@ -18,7 +18,7 @@ const initialState = {
 
 const ClassForm = (props) => {
     const [classForm, setclassForm] = useState(initialState);
-    const { setAvailableClasses, availableClasses } = props;
+    const { availableClasses, setAvailableClasses } = props;
     const { push } = useHistory();
 
     const handleChange = (e) => {
