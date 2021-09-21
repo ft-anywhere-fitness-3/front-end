@@ -101,7 +101,7 @@ const ClassForm = () => {
                         <Link to='/instructor' className='button'>Back</Link>
                     </div>
                     <div className='input-div'>
-                        <button className='button'>Post</button>
+                        <button className='md-button'>Post</button>
                     </div>
                 </form>
             </div>
