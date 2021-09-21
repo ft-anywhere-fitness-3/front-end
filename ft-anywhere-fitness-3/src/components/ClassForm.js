@@ -16,8 +16,9 @@ const initialState = {
     maxCapacity: ''
 }
 
-const ClassForm = () => {
+const ClassForm = (props) => {
     const [classForm, setclassForm] = useState(initialState);
+    const { setAvailableClasses, availableClasses } = props;
     const { push } = useHistory();
 
     const handleChange = (e) => {
@@ -30,11 +31,18 @@ const ClassForm = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log("New Class:", classForm)
-        // axios.post('https://fakeapi.com/api/', classForm)
-        //     .then(res => {
-        //         push('/instructor');
-        //     })
-        //     .catch(err => alert(err))
+        setAvailableClasses([
+            ...availableClasses,
+            classForm
+        ])
+        push('/instructor');
+
+    //     axios.post('https://fakeapi.com/api/', classForm)
+    //         .then(res => {
+    //             setAvailableClasses()
+    //             push('/instructor');
+    //         })
+    //         .catch(err => alert(err))
     }
 
     return (
