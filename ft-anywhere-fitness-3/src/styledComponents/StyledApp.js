@@ -67,7 +67,7 @@ nav {
   width: 115px;
 }
 
-${'' /* .items-list-wrapper {
+ .items-list-wrapper {
   margin-top: 36px;
   display: flex;
   flex-wrap: wrap;
@@ -80,7 +80,7 @@ ${'' /* .items-list-wrapper {
   cursor: pointer;
 }
 
-.item-card p {
+${'' /*.item-card p {
   margin: 0 0 4px;
   text-align: left;
   color: #595959;

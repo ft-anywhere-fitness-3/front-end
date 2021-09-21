@@ -12,17 +12,18 @@ const initialState = {
 }
 
 const Signup = () => {
-    const [ credentials, setCredentials ] = useState(initialState);
+    const [credentials, setCredentials] = useState(initialState);
     const [isInstructor, setInstructor] = useState(2);
     const { push } = useHistory();
 
     const handleChange = (e) => {
-        if( e.target.type !== 'checkbox' ){
-        setCredentials({
-            ...credentials,
-            [e.target.name]: e.target.value
-        })} 
-        else if (e.target.type === 'checkbox'){
+        if (e.target.type !== 'checkbox') {
+            setCredentials({
+                ...credentials,
+                [e.target.name]: e.target.value
+            })
+        }
+        else if (e.target.type === 'checkbox') {
             console.log(e.target.value)
             e.target.checked === true ? setInstructor(1) : setInstructor(2)
         }
@@ -39,44 +40,48 @@ const Signup = () => {
         //     .catch(err => alert(err))
     }
 
-	return (
-		<StyledSignup>
+    return (
+        <StyledSignup>
             <div className='container'>
-                <h2>Sign up</h2>
-                <form onSubmit={handleSubmit}>
+                <div className='row'>
+                    <h2>Sign up</h2>
+                    <form onSubmit={handleSubmit}>
 
-                    <div className='input-div'>
-                        <label>
-                            Name
-                        <input type='text' name='name' id='name' onChange={handleChange} value={credentials.name}/>
-                        </label>
-                    </div>
-                    <div className='input-div'>
-                        <label>
-                            Email
-                        <input type='email' name='email' id='email' onChange={handleChange} value={credentials.email}/>
-                        </label>
-                    </div>
-                    <div className='input-div'>
-                        <label>
-                            Password
-                        <input type='password' name='password' id='password' onChange={handleChange} value={credentials.password}/>
-                        </label>
-                    </div>
-                    <div>
-                        <label><input onChange={handleChange} type='checkbox' name='instructor' value={isInstructor} /> Instructor? </label>
-                    </div>
-                    <div className='input-div'>
-                        <button className='button'>Sign up</button>
-                    </div>
+                        <div className='col'>
+                            <div className='input-div'>
+                                <label>
+                                    Name
+                                    <input type='text' name='name' id='name' onChange={handleChange} value={credentials.name} />
+                                </label>
+                            </div>
+                            <div className='input-div'>
+                                <label>
+                                    Email
+                                    <input type='email' name='email' id='email' onChange={handleChange} value={credentials.email} />
+                                </label>
+                            </div>
+                            <div className='input-div'>
+                                <label>
+                                    Password
+                                    <input type='password' name='password' id='password' onChange={handleChange} value={credentials.password} />
+                                </label>
+                            </div>
+                            <div className='checkbox-div'>
+                                <label><input onChange={handleChange} type='checkbox' name='instructor' value={isInstructor} />  Instructor?</label>
+                            </div>
+                            <div className='signup-div'>
+                                <button className='md-button'>Sign up</button>
+                            </div>
 
-                    <div className='input-div'>
-                        <p>Already have an account? <Link to='/login'>Login</Link></p>
-                    </div>
-                </form>
+                            <div className='input-div'>
+                                <p>Already have an account? <Link to='/login'>Login</Link></p>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
-		</StyledSignup>
-	)
+        </StyledSignup>
+    )
 }
 
 export default Signup;
