@@ -9,7 +9,7 @@ import Signup from './components/Signup';
 import Home from './components/Home';
 import StyledApp from './styledComponents/StyledApp';
 
-import Client from  `.components/Client`
+import Client from './components/Client'
 
 
 function App() {

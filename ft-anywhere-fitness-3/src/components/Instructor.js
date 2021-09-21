@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router";
@@ -9,6 +9,11 @@ const Instructor = () => {
     const [classes, setClasses] = useState([]);
     const { push } = useHistory();
 
+    // useEffect(() => {
+    //     axios.get('https://fakeapi.com/api/')
+    //     .then(res => console.log(res.data))
+    //     .catch(err => alert(err))
+    // },[])
 
     return (
         <StyledInstructor>
