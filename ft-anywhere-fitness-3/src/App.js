@@ -5,8 +5,12 @@ import './App.css';
 import ClassForm from './components/ClassForm';
 import Instructor from './components/Instructor';
 import Signup from './components/Signup';
+
 import Home from './components/Home';
 import StyledApp from './styledComponents/StyledApp';
+
+import Client from  `.components/Client`
+
 
 function App() {
   return (
@@ -26,6 +30,7 @@ function App() {
       <Switch>
         <Route path='/signup' component={Signup} />
         {/* These routes will need to be made into private routes eventually */}
+        <Route path='/client' component={Client}/>
         <Route path='/instructor' component={Instructor} />
         <Route path='/class-form' component={ClassForm} />
         <Route exact path='/' component={Home} />
