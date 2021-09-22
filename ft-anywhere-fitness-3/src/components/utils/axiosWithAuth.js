@@ -4,9 +4,10 @@ export const axiosWithAuth = ()=>{
     const token = localStorage.getItem('token')
 
     return axios.create({
-        baseURL:"http://localhost:5000/api",
+        baseURL: 'https://ft-anywhere-fitness-3.herokuapp.com',
         headers:{
             authorization:token
         }
+        
     })
 }

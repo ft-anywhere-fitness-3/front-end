@@ -16,12 +16,13 @@ const initialState = {
 
 const Signup = () => {
     const [credentials, setCredentials] = useState(initialState);
+    const [isInstructor, setInstructor] = useState(false)
     const [buttonDisabled, setButtonDisabled] = useState(true);
     const [errors, setErrors] = useState({
         user_name: '',
         user_email: '',
         user_username: '',
-        user_password: ''
+        user_password: '',
     });
     const { push } = useHistory();
 
@@ -48,9 +49,8 @@ const Signup = () => {
     .min(6, "Password must include between 6-30 characters")
     .max(30,"Password must include between 6-30 characters"),
     user_role: Yup
-    .boolean()
+    .number()
     })
-
 
     useEffect( () => {
         formSchema.isValid(credentials).then((valid) => {
@@ -60,33 +60,34 @@ const Signup = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.post('https://ft-anywhere-fitness-3.herokuapp.com/api/auth/register', credentials)
+        // console.log(credentials)
+        if(isInstructor){
+        // console.log("Instructor: ",{...credentials, user_role: 1})
+            axios.post('https://ft-anywhere-fitness-3.herokuapp.com/api/auth/register', {...credentials, user_role: 1})
             .then(res => {
                 console.log(res)
-                console.log(credentials)
                 push('/login');
             })
             .catch(err => alert(err))
+        } else if (!isInstructor){
+            credentials.user_role = 2
+            // console.log("Client: ",credentials)
+            axios.post('https://ft-anywhere-fitness-3.herokuapp.com/api/auth/register', credentials)
+            .then(res => {
+                console.log(res.data.message)
+                push('/login');
+            })
+            .catch(err => alert(err))
+        }
+        
     }
 
     const handleChange = (e) => {
         const {name, value, checked, type} = e.target
-        const valueToUse = type === 'checkbox' ? checked : value;
+
 
         if(type === 'checkbox'){
-            checked === true ? setCredentials({
-                ...credentials,
-                user_role: 1
-            }) : setCredentials({
-                ...credentials,
-                user_role: 2
-            });            
-        } else {
-            setCredentials({
-                ...credentials,
-                [name]: value
-            })
-            // console.log("Select Unchanged: ", credentials)
+            checked === true ? setInstructor(true) : setInstructor(false);
         }
         Yup
         .reach(formSchema, name)
@@ -103,7 +104,7 @@ const Signup = () => {
         })
 
         setCredentials({
-            ...credentials, [name]: valueToUse
+            ...credentials, [name]: value
         })
     }
 
