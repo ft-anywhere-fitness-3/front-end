@@ -5,16 +5,18 @@ import { useHistory } from "react-router";
 
 import Course from "./Course";
 import StyledInstructor from "../styledComponents/StyledInstructor";
+import { axiosWithAuth } from "./utils/axiosWithAuth";
 
 const Instructor = (props) => {
     const { availableClasses, setAvailableClasses } = props;
     const { push } = useHistory();
 
-    // useEffect(() => {
-    //     axios.get('https://fakeapi.com/api/')
-    //     .then(res => console.log(res.data))
-    //     .catch(err => alert(err))
-    // },[])
+    useEffect(() => {
+        axiosWithAuth()
+        .get('/api/classes')
+        .then(res => console.log(res.data))
+        .catch(err => alert(err))
+    },[])
 
     return (
         <StyledInstructor>
