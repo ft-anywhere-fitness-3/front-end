@@ -9,28 +9,48 @@ import Login from './components/Login';
 import Header from './components/Header';
 import Home from './components/Home';
 import StyledApp from './styledComponents/StyledApp';
-
 import Client from './components/Client'
 
-
+import { axiosWithAuth } from './components/utils/axiosWithAuth';
+import PrivateRoute from './components/PrivateRoute';
 
 function App() {
   const [availableClasses, setAvailableClasses] = useState([]);
 
+  const logout = () => {
+    axiosWithAuth()
+    .post('/logout')
+    .then(res => {
+      localStorage.removeItem('token')
+      window.location.href = '#'
+    })
+  }
+
   return (
     <StyledApp className='App'>
-      <Header />
+      <Header logout={logout}/>
       <Switch>
-        <Route path='/login' component={Login} />
-        <Route path='/signup' component={Signup} />
         {/* These routes will need to be made into private routes eventually */}
-        <Route path='/client' component={Client}/>
-        <Route path='/instructor' render={(props) => (
-          <Instructor {...props} availableClasses={availableClasses} setAvailableClasses={setAvailableClasses} />
-        )} />
-        <Route path='/class-form' render={(props) => (
-          <ClassForm {...props}  setAvailableClasses={setAvailableClasses} availableClasses={availableClasses} />
-        )} />
+        <Route path='/client'>
+          <Client availableClasses={availableClasses} setAvailableClasses={setAvailableClasses} />
+        </Route>
+
+        <Route path='/instructor'>
+          <Instructor availableClasses={availableClasses} setAvailableClasses={setAvailableClasses} />
+        </Route>
+
+        <Route path='/class-form'>
+          <ClassForm availableClasses={availableClasses} setAvailableClasses={setAvailableClasses} />
+        </Route>
+
+        <Route path='/signup'>
+          <Signup />
+        </Route>
+        
+        <Route path='/login'>
+          <Login />
+        </Route>
+        
         <Route exact path='/' component={Home} />
       </Switch>
     </StyledApp>
