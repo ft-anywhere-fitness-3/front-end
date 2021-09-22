@@ -4,9 +4,10 @@ const StyledSignup = styled.div`
     display: flex;
     justify-content: center;
 
-.checkbox-div {
+.checkbox-div{
+    width: 15rem;
     display: flex;
-    flex-direction: row;
+    ${'' /* flex-direction: row; */}
     justify-content: flex-end;
 }
 

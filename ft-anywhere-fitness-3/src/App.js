@@ -5,10 +5,10 @@ import './App.css';
 import ClassForm from './components/ClassForm';
 import Instructor from './components/Instructor';
 import Signup from './components/Signup';
+import Login from './components/Login';
 import Header from './components/Header';
 import Home from './components/Home';
 import StyledApp from './styledComponents/StyledApp';
-import Login from './components/Login'
 import Client from './components/Client'
 
 import { axiosWithAuth } from './components/utils/axiosWithAuth';
