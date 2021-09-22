@@ -11,42 +11,31 @@ import Home from './components/Home';
 import StyledApp from './styledComponents/StyledApp';
 import Client from './components/Client'
 
-import axiosWithAuth from './components/utils/axiosWithAuth';
 import PrivateRoute from './components/PrivateRoute';
 import InstructorRoute from './components/InstructorRoute';
 
 function App() {
   const [availableClasses, setAvailableClasses] = useState([]);
-
-  const logout = () => {
-    axiosWithAuth()
-    .post('/logout')
-    .then(res => {
-      localStorage.removeItem('token')
-      window.location.href = '#'
-    })
-  }
+  const [isLoggedIn, setLoggedIn] = useState(false);
 
   return (
     <StyledApp className='App'>
-      <Header logout={logout}/>
+      <Header isLoggedIn={isLoggedIn} setLoggedIn={setLoggedIn} />
       <Switch>
         {/* These routes will need to be made into private routes eventually */}
         <Route path='/client'>
           <Client availableClasses={availableClasses} setAvailableClasses={setAvailableClasses} />
         </Route>
 
-        {/* <Route path='/class-form'>
-          <ClassForm availableClasses={availableClasses} setAvailableClasses={setAvailableClasses} />
-        </Route> */}
-
         <InstructorRoute path='/class-form' component={ClassForm} availableClasses={availableClasses} setAvailableClasses={setAvailableClasses} />
 
-        <PrivateRoute path='/instructor' component={Instructor} availableClasses={availableClasses} setAvailableClasses={setAvailableClasses} />
+        <InstructorRoute path='/instructor' component={Instructor} availableClasses={availableClasses} setAvailableClasses={setAvailableClasses} />
 
-        <PrivateRoute path="/logout" component={Logout}/>
+        <PrivateRoute path="/logout" component={Logout} setLoggedIn={setLoggedIn} />
       
-        <Route path='/login' component={Login}/>
+        <Route path='/login' render={(props) => (
+          <Login {...props} isLoggedIn={isLoggedIn} availableClasses={availableClasses} setAvailableClasses={setAvailableClasses} setLoggedIn={setLoggedIn} />
+        )} />
 
         <Route path='/signup'>
           <Signup />
