@@ -13,10 +13,12 @@ const Course = (props) => {
 
     return(
         <div>
-            <h2>{course.name}</h2>
-            <p>{course.type}</p>
-            <p>{course.startTime}</p>
-            <p>{course.duration}</p>
+            <h2>{course.class_name}</h2>
+            <p>{course.class_type}</p>
+            <p>{course.class_startTime}</p>
+            <p>{course.class_duration}</p>
+            <p>{course.class_location}</p>
+            <p>{course.attendees}/{course.class_max_size} attendees</p>
             <button onClick={handleEdit} >Edit</button>
             <button onClick={handleDelete} >Delete</button>
         </div>

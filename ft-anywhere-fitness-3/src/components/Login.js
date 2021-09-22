@@ -28,10 +28,10 @@ class Login extends React.Component {
       .then(res => {
         console.log(res.data)
         localStorage.setItem("token", res.data.payload);
-        if(res.data.user_role == 1){
+        if(res.data.user_role === 1){
           this.props.history.push('/instructor')
         }
-        else{
+        else if (res.data.user_role === 2){
           this.props.history.push('/client')
         }
         

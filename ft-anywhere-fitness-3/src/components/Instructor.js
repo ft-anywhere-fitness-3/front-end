@@ -1,11 +1,10 @@
 import React, { useEffect } from "react";
-import axios from "axios";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router";
 
-import Course from "./Course";
+import Course from './Course'
 import StyledInstructor from "../styledComponents/StyledInstructor";
-import { axiosWithAuth } from "./utils/axiosWithAuth";
+import axiosWithAuth from "./utils/axiosWithAuth";
 
 const Instructor = (props) => {
     const { availableClasses, setAvailableClasses } = props;
@@ -14,7 +13,7 @@ const Instructor = (props) => {
     useEffect(() => {
         axiosWithAuth()
         .get('/api/classes')
-        .then(res => console.log(res.data))
+        .then(res => setAvailableClasses(res.data))
         .catch(err => alert(err))
     },[])
 

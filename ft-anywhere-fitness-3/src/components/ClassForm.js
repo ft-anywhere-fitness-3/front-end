@@ -6,14 +6,14 @@ import { useHistory } from 'react-router';
 import StyledClassForm from '../styledComponents/StyledClassForm';
 
 const initialState = {
-    name: '',
-    type: '',
-    startTime: '',
-    duration: '',
-    intensity: '',
-    location: '',
-    attendeesCount: 0,
-    maxCapacity: ''
+    class_name: '',
+    class_type: '',
+    class_start: '',
+    class_duration: '',
+    class_intensity: '',
+    class_location: '',
+    attendees: 0,
+    class_max_size: ''
 }
 
 const ClassForm = (props) => {
@@ -55,26 +55,26 @@ const ClassForm = (props) => {
                             <div className='input-div'>
                                 <label>
                                     Class Name
-                                    <input type='text' name='name' id='name' onChange={handleChange} value={classForm.name} />
+                                    <input type='text' name='class_name' id='class_name' onChange={handleChange} value={classForm.class_name} />
                                 </label>
                             </div>
                             <div className='input-div'>
                                 <label>
                                     Type
-                                    <input type='text' name='type' id='type' onChange={handleChange} value={classForm.type} />
+                                    <input type='text' name='class_type' id='class_type' onChange={handleChange} value={classForm.class_type} />
                                 </label>
                             </div>
                             <div className='input-div'>
                                 <label>
                                     Start Time
-                                    <input type='text' name='startTime' id='startTime' onChange={handleChange} value={classForm.startTime} />
+                                    <input type='text' name='class_start' id='class_start' onChange={handleChange} value={classForm.class_start} />
                                 </label>
                             </div>
                             <div className='select-div'>
                                 <label>
-                                    Duration
-                                    <select type='text' name='duration' id='duration' onChange={handleChange} value={classForm.duration}>
-                                        <option value=''>--Select Duration--</option>
+                                    class_duration
+                                    <select type='text' name='class_duration' id='class_duration' onChange={handleChange} value={classForm.class_duration}>
+                                        <option value=''>--Select class_duration--</option>
                                         <option value='45 minutes' >45 minutes</option>
                                         <option value='1 hour' >1 hour</option>
                                         <option value='2 hours' >2 hours</option>
@@ -83,26 +83,26 @@ const ClassForm = (props) => {
                             </div>
                             <div className='select-div'>
                                 <label>
-                                    Intensity Level
-                                    <select type='text' name='intensity' id='intensity' onChange={handleChange} value={classForm.intensity}>
-                                        <option value=''>--Select Intensity--</option>
-                                        <option value='Low Intensity' >Low Intensity</option>
-                                        <option value='Medium Intensity' >Medium Intensity</option>
-                                        <option value='High Intensity' >High Intensity</option>
-                                        <option value='Extreme Intensity' >Extreme Intensity</option>
+                                    class_intensity Level
+                                    <select type='text' name='class_intensity' id='class_intensity' onChange={handleChange} value={classForm.class_intensity}>
+                                        <option value=''>--Select class_intensity--</option>
+                                        <option value='Low class_intensity' >Low class_intensity</option>
+                                        <option value='Medium class_intensity' >Medium class_intensity</option>
+                                        <option value='High class_intensity' >High class_intensity</option>
+                                        <option value='Extreme class_intensity' >Extreme class_intensity</option>
                                     </select>
                                 </label>
                             </div>
                             <div className='input-div'>
                                 <label>
                                     Location
-                                    <input type='text' name='location' id='location' onChange={handleChange} value={classForm.location} />
+                                    <input type='text' name='class_location' id='class_location' onChange={handleChange} value={classForm.class_location} />
                                 </label>
                             </div>
                             <div className='input-div'>
                                 <label>
                                     Max Capacity
-                                    <input type='text' name='maxCapacity' id='maxCapacity' onChange={handleChange} value={classForm.maxCapacity} />
+                                    <input type='text' name='class_max_size' id='class_max_size' onChange={handleChange} value={classForm.class_max_size} />
                                 </label>
                             </div>
 
