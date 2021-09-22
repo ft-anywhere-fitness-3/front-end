@@ -47,10 +47,9 @@ function App() {
           <Signup />
         </Route>
         
-        <Route path='/login'>
-          <Login />
-        </Route>
-        
+        <Route path='/login' component={Login}/>
+      
+      
         <Route exact path='/' component={Home} />
       </Switch>
     </StyledApp>

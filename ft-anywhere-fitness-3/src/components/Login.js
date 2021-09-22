@@ -1,5 +1,4 @@
 import React from 'react';
-import axios from 'axios';
 import StyledLogin from '../styledComponents/StyledLogin';
 import axios from 'axios';
 
@@ -29,7 +28,13 @@ class Login extends React.Component {
       .then(res => {
         console.log(res.data)
         localStorage.setItem("token", res.data.payload);
-        this.props.history.push('/protected')
+        if(res.data.user_role == 1){
+          this.props.history.push('/instructor')
+        }
+        else{
+          this.props.history.push('/client')
+        }
+        
       })
       .catch(err => {
         console.log(err)
