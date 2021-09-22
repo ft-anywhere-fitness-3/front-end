@@ -1,5 +1,6 @@
 import React from 'react';
 import { axiosWithAuth } from './utils/axiosWithAuth';
+import StyledLogin from '../styledComponents/StyledLogin';
 
 class Login extends React.Component {
   state = {
@@ -22,35 +23,42 @@ class Login extends React.Component {
     e.preventDefault();
 
     axiosWithAuth()
-        .post('/login', this.state.credentials)
-      .then(res=>{
+      .post('/login', this.state.credentials)
+      .then(res => {
         localStorage.setItem("token", res.data.payload);
         this.props.history.push('/protected')
       })
-      .catch(err=>{
+      .catch(err => {
         console.log(err)
       })
   };
 
   render() {
     return (
-      <div>
-        <form onSubmit={this.login}>
-          <input
-            type="text"
-            name="username"
-            value={this.state.credentials.username}
-            onChange={this.handleChange}
-          />
-          <input
-            type="password"
-            name="password"
-            value={this.state.credentials.password}
-            onChange={this.handleChange}
-          />
-          <button>Log in</button>
-        </form>
-      </div>
+      <StyledLogin>
+        <div className='container'>
+          <div className='row'>
+            <h2>Login</h2>
+            <form onSubmit={this.login}>
+              <div className='col'>
+                <input
+                  type="text"
+                  name="username"
+                  value={this.state.credentials.username}
+                  onChange={this.handleChange}
+                />
+                <input
+                  type="password"
+                  name="password"
+                  value={this.state.credentials.password}
+                  onChange={this.handleChange}
+                />
+                <button className='md-button'>Log in</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </StyledLogin>
     );
   }
 }

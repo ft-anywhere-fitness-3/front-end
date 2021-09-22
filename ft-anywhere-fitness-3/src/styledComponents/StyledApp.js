@@ -65,28 +65,28 @@ nav a {
   max-height: 400px;
   object-fit: cover;
 }
-
+.login-button.md-button,
 .signup-button.md-button {
   margin-top: -16px;
   width: 115px;
 }
 
- .items-list-wrapper {
+ ${'' /* .items-list-wrapper {
   margin-top: 36px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-}
+} */}
 
-.item-card {
+${'' /* .item-card {
   width: 250px;
   margin: 0 10px 32px;
   cursor: pointer;
-}
+} */}
 
 .container {
-    width: 35%;
-    box-sizing: border-box;
+  width: 35%;
+  box-sizing: border-box;
   position: relative;
   border-radius: 5px;
   background-color: #f2f2f2;
