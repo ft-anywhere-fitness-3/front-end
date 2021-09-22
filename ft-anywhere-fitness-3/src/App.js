@@ -13,6 +13,7 @@ import Client from './components/Client'
 
 import axiosWithAuth from './components/utils/axiosWithAuth';
 import PrivateRoute from './components/PrivateRoute';
+import InstructorRoute from './components/InstructorRoute';
 
 function App() {
   const [availableClasses, setAvailableClasses] = useState([]);
@@ -35,9 +36,11 @@ function App() {
           <Client availableClasses={availableClasses} setAvailableClasses={setAvailableClasses} />
         </Route>
 
-        <Route path='/class-form'>
+        {/* <Route path='/class-form'>
           <ClassForm availableClasses={availableClasses} setAvailableClasses={setAvailableClasses} />
-        </Route>
+        </Route> */}
+
+        <InstructorRoute path='/class-form' component={ClassForm} availableClasses={availableClasses} setAvailableClasses={setAvailableClasses} />
 
         <PrivateRoute path='/instructor' component={Instructor} availableClasses={availableClasses} setAvailableClasses={setAvailableClasses} />
 

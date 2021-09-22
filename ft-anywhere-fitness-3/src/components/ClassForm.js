@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import axiosWithAuth from './utils/axiosWithAuth';
 import { Link } from 'react-router-dom'
 import { useHistory } from 'react-router';
 
@@ -10,13 +10,15 @@ const initialState = {
     class_type: '',
     class_start: '',
     class_duration: '',
-    class_intensity: '',
+    class_level: 0,
     class_location: '',
-    attendees: 0,
     class_max_size: ''
 }
 
 const ClassForm = (props) => {
+    const instructorId = localStorage.getItem("instructor_id");
+    console.log(instructorId)
+
     const [classForm, setclassForm] = useState(initialState);
     const { availableClasses, setAvailableClasses } = props;
     const { push } = useHistory();
@@ -30,19 +32,26 @@ const ClassForm = (props) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log("New Class:", classForm)
-        setAvailableClasses([
-            ...availableClasses,
-            classForm
-        ])
-        push('/instructor');
+        // console.log("New Class:", classForm)
+        // setAvailableClasses([
+        //     ...availableClasses,
+        //     classForm
+        // ])
+        // push('/instructor');
+        console.log({ ...classForm, class_max_size: parseInt(classForm.class_max_size), class_level: parseInt(classForm.class_level) })
 
-    //     axios.post('https://fakeapi.com/api/', classForm)
-    //         .then(res => {
-    //             setAvailableClasses()
-    //             push('/instructor');
-    //         })
-    //         .catch(err => alert(err))
+        axiosWithAuth()
+        .post('/classes', {
+            ...classForm,
+            instructor_id: instructorId,
+            class_max_size: parseInt(classForm.class_max_size),
+            class_level: parseInt(classForm.class_level)
+        })
+        .then(res => {
+            setAvailableClasses([...availableClasses, res.data ])
+            push('/instructor');
+        })
+        .catch(err => alert(err))
     }
 
     return (
@@ -72,25 +81,19 @@ const ClassForm = (props) => {
                             </div>
                             <div className='select-div'>
                                 <label>
-                                    class_duration
+                                    Duration
                                     <select type='text' name='class_duration' id='class_duration' onChange={handleChange} value={classForm.class_duration}>
-                                        <option value=''>--Select class_duration--</option>
+                                        <option value=''>--Select duration--</option>
                                         <option value='45 minutes' >45 minutes</option>
                                         <option value='1 hour' >1 hour</option>
                                         <option value='2 hours' >2 hours</option>
                                     </select>
                                 </label>
                             </div>
-                            <div className='select-div'>
+                            <div className='input-div'>
                                 <label>
-                                    class_intensity Level
-                                    <select type='text' name='class_intensity' id='class_intensity' onChange={handleChange} value={classForm.class_intensity}>
-                                        <option value=''>--Select class_intensity--</option>
-                                        <option value='Low class_intensity' >Low class_intensity</option>
-                                        <option value='Medium class_intensity' >Medium class_intensity</option>
-                                        <option value='High class_intensity' >High class_intensity</option>
-                                        <option value='Extreme class_intensity' >Extreme class_intensity</option>
-                                    </select>
+                                    Intensity Level
+                                    <input type='number' name='class_level' id='class_level' onChange={handleChange} value={classForm.class_level} />
                                 </label>
                             </div>
                             <div className='input-div'>
@@ -102,7 +105,7 @@ const ClassForm = (props) => {
                             <div className='input-div'>
                                 <label>
                                     Max Capacity
-                                    <input type='text' name='class_max_size' id='class_max_size' onChange={handleChange} value={classForm.class_max_size} />
+                                    <input type='number' name='class_max_size' id='class_max_size' onChange={handleChange} value={classForm.class_max_size} />
                                 </label>
                             </div>
 
