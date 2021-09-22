@@ -1,15 +1,16 @@
 import React from 'react';
 import { axiosWithAuth } from './utils/axiosWithAuth';
 import StyledLogin from '../styledComponents/StyledLogin';
+import axios from 'axios';
 
 class Login extends React.Component {
   state = {
     credentials: {
-      username: 'lambda',
-      password: 'school'
+      user_username: 'lambda',
+      user_password: 'school'
     }
   };
-
+    
   handleChange = e => {
     this.setState({
       credentials: {
@@ -22,12 +23,12 @@ class Login extends React.Component {
   login = e => {
     e.preventDefault();
 
-    axiosWithAuth()
-      .post('/login', this.state.credentials)
-      .then(res => {
-        localStorage.setItem("token", res.data.payload);
-        this.props.history.push('/protected')
-      })
+    axios
+    .post('https://ft-anywhere-fitness-3.herokuapp.com/api/auth/login', this.state.credentials)
+    .then(res => {
+    localStorage.setItem("token", res.data.payload);
+    this.props.history.push('/protected')})
+
       .catch(err => {
         console.log(err)
       })
@@ -43,14 +44,14 @@ class Login extends React.Component {
               <div className='col'>
                 <input
                   type="text"
-                  name="username"
-                  value={this.state.credentials.username}
+                  name="user_username"
+                  value={this.state.credentials.user_username}
                   onChange={this.handleChange}
                 />
                 <input
                   type="password"
-                  name="password"
-                  value={this.state.credentials.password}
+                  name="user_password"
+                  value={this.state.credentials.user_password}
                   onChange={this.handleChange}
                 />
                 <button className='md-button'>Log in</button>
