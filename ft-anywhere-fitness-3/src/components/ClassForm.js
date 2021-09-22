@@ -32,12 +32,7 @@ const ClassForm = (props) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // console.log("New Class:", classForm)
-        // setAvailableClasses([
-        //     ...availableClasses,
-        //     classForm
-        // ])
-        // push('/instructor');
+
         console.log({ ...classForm, class_max_size: parseInt(classForm.class_max_size), class_level: parseInt(classForm.class_level) })
 
         axiosWithAuth()

@@ -1,8 +1,7 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import StyledLogin from '../styledComponents/StyledLogin';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import { useHistory } from 'react-router';
 
 const initialState = {
   user_username: 'testUser',
