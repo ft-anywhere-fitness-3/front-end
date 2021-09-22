@@ -1,49 +1,120 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from 'react-router-dom'
 import { useHistory } from "react-router";
+import * as Yup from 'yup';
 
 import StyledSignup from "../styledComponents/StyledSignup";
 
 const initialState = {
-    name: '',
-    email: '',
-    password: ''
+    user_name: '',
+    user_email: '',
+    user_username: '',
+    user_password: '',
+    user_role: 2
 }
 
 const Signup = () => {
     const [credentials, setCredentials] = useState(initialState);
-    const [isInstructor, setInstructor] = useState(2);
+    const [buttonDisabled, setButtonDisabled] = useState(true);
+    const [errors, setErrors] = useState({
+        user_name: '',
+        user_email: '',
+        user_username: '',
+        user_password: ''
+    });
     const { push } = useHistory();
 
-    const handleChange = (e) => {
-        if (e.target.type !== 'checkbox') {
-            setCredentials({
-                ...credentials,
-                [e.target.name]: e.target.value
-            })
-        }
-        else if (e.target.type === 'checkbox') {
-            console.log(e.target.value)
-            e.target.checked === true ? setInstructor(1) : setInstructor(2)
-        }
-    }
+    const formSchema = Yup.object().shape({
+    user_name: Yup
+    .string()
+    .trim()
+    .required("A name is required"),
+    user_email: Yup
+    .string()
+    .email("This must be a valid email")
+    .trim()
+    .required("An email address is required"),
+    user_username: Yup
+    .string()
+    .trim()
+    .required("A username is required")
+    .min(3, "Username must include between 3-30 characters")
+    .max(30,"Username must include between 3-30 characters"),
+    user_password: Yup
+    .string()
+    .trim()
+    .required("A password is required")
+    .min(6, "Password must include between 6-30 characters")
+    .max(30,"Password must include between 6-30 characters"),
+    user_role: Yup
+    .boolean()
+    })
+
+
+    useEffect( () => {
+        formSchema.isValid(credentials).then((valid) => {
+            setButtonDisabled(!valid);
+        })
+    }, [credentials])
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log("New User:", credentials)
+        axios.post('https://ft-anywhere-fitness-3.herokuapp.com/api/auth/register', credentials)
+            .then(res => {
+                console.log(res)
+                console.log(credentials)
+                push('/login');
+            })
+            .catch(err => alert(err))
+    }
 
-        // axios.post('https://fakeapi.com/api/', credentials)
-        //     .then(res => {
-        //         push('/login');
-        //     })
-        //     .catch(err => alert(err))
+    const handleChange = (e) => {
+        const {name, value, checked, type} = e.target
+        const valueToUse = type === 'checkbox' ? checked : value;
+
+        if(type === 'checkbox'){
+            checked === true ? setCredentials({
+                ...credentials,
+                user_role: 1
+            }) : setCredentials({
+                ...credentials,
+                user_role: 2
+            });            
+        } else {
+            setCredentials({
+                ...credentials,
+                [name]: value
+            })
+            // console.log("Select Unchanged: ", credentials)
+        }
+        Yup
+        .reach(formSchema, name)
+        .validate(value)
+        .then(() => {
+            setErrors({
+                ...errors, [name]: ''
+            })
+        })
+        .catch(err => {
+            setErrors({
+                ...errors, [name]: err.errors[0]
+            })
+        })
+
+        setCredentials({
+            ...credentials, [name]: valueToUse
+        })
     }
 
     return (
         <StyledSignup>
             <div className='container'>
                 <div className='row'>
+                {errors.user_name.length > 0 && <p className='errorMsg'>{errors.user_name}</p>}
+                {errors.user_email.length > 0 && <p className='errorMsg'>{errors.user_email}</p>}
+                {errors.user_username.length > 0 && <p className='errorMsg'>{errors.user_username}</p>}
+                {errors.user_password.length > 0 && <p className='errorMsg'>{errors.user_password}</p>}
                     <h2>Sign up</h2>
                     <form onSubmit={handleSubmit}>
 
@@ -51,26 +122,32 @@ const Signup = () => {
                             <div className='input-div'>
                                 <label>
                                     Name
-                                    <input type='text' name='name' id='name' onChange={handleChange} value={credentials.name} />
+                                    <input type='text' name='user_name' id='user_name' onChange={handleChange} value={credentials.user_name} />
                                 </label>
                             </div>
                             <div className='input-div'>
                                 <label>
                                     Email
-                                    <input type='email' name='email' id='email' onChange={handleChange} value={credentials.email} />
+                                    <input type='user_email' name='user_email' id='user_email' onChange={handleChange} value={credentials.user_email} />
+                                </label>
+                            </div>
+                            <div className='input-div'>
+                                <label>
+                                    Username
+                                    <input type='text' name='user_username' id='user_username' onChange={handleChange} value={credentials.user_username} />
                                 </label>
                             </div>
                             <div className='input-div'>
                                 <label>
                                     Password
-                                    <input type='password' name='password' id='password' onChange={handleChange} value={credentials.password} />
+                                    <input type='password' name='user_password' id='user_password' onChange={handleChange} value={credentials.user_password} />
                                 </label>
                             </div>
                             <div className='checkbox-div'>
-                                <label><input onChange={handleChange} type='checkbox' name='instructor' value={isInstructor} />  Instructor?</label>
+                                <label><input onChange={handleChange} type='checkbox' name='user_role' value={credentials.user_role} />  Instructor?</label>
                             </div>
                             <div className='signup-div'>
-                                <button className='md-button'>Sign up</button>
+                                <button disabled={buttonDisabled} className='md-button'>Sign up</button>
                             </div>
 
                             <div className='input-div'>
