@@ -1,14 +1,14 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 
-const PrivateRoute = ({ component: Component, availableClasses, setAvailableClasses, ...rest }) => {
+const InstructorRoute = ({ component: Component, availableClasses, setAvailableClasses, ...rest }) => {
     return <Route {...rest} render={(props)=> {
-        if (localStorage.getItem("token")) {
+        if (localStorage.getItem("user_role") === 1) {
             return <Component availableClasses={availableClasses} setAvailableClasses={setAvailableClasses} {...props}/>
         } else {
-            return <Redirect to='/login'/>
+            return <Redirect to='/logout'/>
         }    
     }}/>
 }
 
-export default PrivateRoute;
+export default InstructorRoute;

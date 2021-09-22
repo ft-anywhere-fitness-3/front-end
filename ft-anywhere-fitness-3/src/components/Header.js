@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Header = () => {
+const Header = (props) => {
 
     return (
         <nav>
@@ -9,11 +9,8 @@ const Header = () => {
             <h1 className='title-header'>Anywhere Fitness</h1>
             </Link>
             <div className='nav-links'>
-            <Link to='/'>Home</Link>
-            <Link to='/signup'>Signup</Link>
             <Link to='/login'>Login</Link>
             <Link to='/logout'>Logout</Link>
-            <Link to='/instructor'>Instructor</Link>
             </div>
         </nav>
     )
