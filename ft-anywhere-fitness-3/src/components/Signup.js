@@ -144,7 +144,7 @@ const Signup = () => {
                                 </label>
                             </div>
                             <div className='checkbox-div'>
-                                <label><input onChange={handleChange} type='checkbox' name='user_role' value={credentials.user_role} />  Instructor?</label>
+                                <label>Instructor?<input onChange={handleChange} type='checkbox' name='user_role' value={credentials.user_role} /></label>
                             </div>
                             <div className='signup-div'>
                                 <button disabled={buttonDisabled} className='md-button'>Sign up</button>
