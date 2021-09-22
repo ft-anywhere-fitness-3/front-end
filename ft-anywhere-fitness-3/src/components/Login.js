@@ -1,13 +1,13 @@
 import React from 'react';
-import { axiosWithAuth } from './utils/axiosWithAuth';
+import axios from 'axios';
 import StyledLogin from '../styledComponents/StyledLogin';
 import axios from 'axios';
 
 class Login extends React.Component {
   state = {
     credentials: {
-      user_username: 'lambda',
-      user_password: 'school'
+      user_username: 'testUser',
+      user_password: 'password'
     }
   };
     
@@ -22,13 +22,15 @@ class Login extends React.Component {
 
   login = e => {
     e.preventDefault();
+    console.log(this.state.credentials)
 
     axios
-    .post('https://ft-anywhere-fitness-3.herokuapp.com/api/auth/login', this.state.credentials)
-    .then(res => {
-    localStorage.setItem("token", res.data.payload);
-    this.props.history.push('/protected')})
-
+      .post('https://ft-anywhere-fitness-3.herokuapp.com/api/auth/login', this.state.credentials)
+      .then(res => {
+        console.log(res.data)
+        localStorage.setItem("token", res.data.payload);
+        this.props.history.push('/protected')
+      })
       .catch(err => {
         console.log(err)
       })
