@@ -1,24 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useHistory } from 'react-router-dom';
-import axiosWithAuth from "./utils/axiosWithAuth";
 
 const Course = (props) => {
-    const { course, availableClasses, setAvailableClasses } = props;
-    // const [editedCourse, setEditedCourse] = useState(course);
+    const { course } = props;
     const { push } = useHistory();
-
-    // useEffect(() => {
-        
-    // },[editedCourse])
-
-    const handleEdit = () => {
-       push(`/class-form/edit/${course.class_id}`)
-    }
-
-    const handleDelete = (e) => {
-       push(`/class-form/delete/${course.class_id}`)
-    }
-
     return(
         <div>
         <div className='class-card'>

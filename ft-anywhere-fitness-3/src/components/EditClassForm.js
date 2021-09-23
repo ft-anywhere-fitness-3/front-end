@@ -26,6 +26,7 @@ const EditClassForm = (props) => {
         .get(`/classes/${id}`)
 		.then(res => {
             console.log(res)
+            delete res.data.attendees;
             setClassForm(res.data)
         })
 		.catch(err => console.log(err))
@@ -37,10 +38,6 @@ const EditClassForm = (props) => {
             [e.target.name]: e.target.value
         })
     }
-
-    // const saveEdit = () => {
-        
-    // }
 
     const handleSubmit = (e) => {
         e.preventDefault();
