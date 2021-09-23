@@ -17,6 +17,7 @@ import DeleteCourseModal from './components/DeleteCourseModal';
 
 import PrivateRoute from './components/PrivateRoute';
 import InstructorRoute from './components/InstructorRoute';
+import ClientRoute from './components/ClientRoute';
 
 
 function App() {
@@ -33,9 +34,7 @@ function App() {
           <OnboardingClient />
         </Route>
 
-        <Route path='/client'>
-          <Client availableClasses={availableClasses} setAvailableClasses={setAvailableClasses} />
-        </Route>
+        <ClientRoute path='/client' component={Client} availableClasses={availableClasses} setAvailableClasses={setAvailableClasses} />
 
         <InstructorRoute path='/class-form/delete/:id' component={DeleteCourseModal} availableClasses={availableClasses} setAvailableClasses={setAvailableClasses}/>
         

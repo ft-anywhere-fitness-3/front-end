@@ -4,7 +4,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 const initialState = {
-  user_username: 'testUser',
+  user_username: 'testInstructor',
   user_password: 'password'
 }
 

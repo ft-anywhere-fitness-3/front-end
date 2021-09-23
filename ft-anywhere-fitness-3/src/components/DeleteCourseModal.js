@@ -24,7 +24,6 @@ const DeletedCourseModal = (props) => {
         .get(`/classes/${id}`)
         .then(res => {
             setDeletedClass(res.data)
-            // push('/instructor')
         })
         .catch(err => alert(err))
     },[])
@@ -42,8 +41,8 @@ const DeletedCourseModal = (props) => {
 
     return (
         <div className='modal'>
-            <h2>Are you sure you want to delete this class?</h2>
-            <p className='errMsg'>This action can not be undone.</p>
+            <h2>Are you sure you want to delete {deletedCourse.class_name}?</h2>
+            <p className='errMsg'>This action is permanent, changes can not be reverted</p>
             <div className='class-card'>
             <h2>{deletedCourse.class_name}</h2>
             <p><strong>Class Type:</strong> {deletedCourse.class_type}</p>

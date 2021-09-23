@@ -109,10 +109,10 @@ const Signup = () => {
         <StyledSignup>
             <div className='container'>
                 <div className='row'>
-                {errors.user_name.length > 0 && <p className='errorMsg'>{errors.user_name}</p>}
-                {errors.user_email.length > 0 && <p className='errorMsg'>{errors.user_email}</p>}
-                {errors.user_username.length > 0 && <p className='errorMsg'>{errors.user_username}</p>}
-                {errors.user_password.length > 0 && <p className='errorMsg'>{errors.user_password}</p>}
+                {errors.user_name.length > 0 && <p className='errMsg'>{errors.user_name}</p>}
+                {errors.user_email.length > 0 && <p className='errMsg'>{errors.user_email}</p>}
+                {errors.user_username.length > 0 && <p className='errMsg'>{errors.user_username}</p>}
+                {errors.user_password.length > 0 && <p className='errMsg'>{errors.user_password}</p>}
                     <h2>Sign up</h2>
                     <form onSubmit={handleSubmit}>
 

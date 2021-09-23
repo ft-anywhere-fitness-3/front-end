@@ -4,7 +4,6 @@ import { useHistory } from 'react-router-dom';
 const Course = (props) => {
     const { course } = props;
     const { push } = useHistory();
-
     return(
         <div>
         <div className='class-card'>
