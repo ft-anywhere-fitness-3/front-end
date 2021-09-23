@@ -40,8 +40,6 @@ const DeletedCourseModal = (props) => {
         .catch(err => alert(err))
     }
 
-
-
     return (
         <div className='modal'>
             <h2>Are you sure you want to delete this class?</h2>
