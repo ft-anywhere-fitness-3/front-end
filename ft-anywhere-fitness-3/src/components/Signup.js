@@ -60,19 +60,16 @@ const Signup = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // console.log(credentials)
         if(isInstructor){
-        // console.log("Instructor: ",{...credentials, user_role: 1})
             axios.post('https://ft-anywhere-fitness-3.herokuapp.com/api/auth/register', {...credentials, user_role: 1})
             .then(res => {
                 console.log(res)
-                localStorage.setItem("message", res.data.message)
                 push('/instructor/welcome');
             })
             .catch(err => alert(err))
-        } else if (!isInstructor){
+        } 
+        else if (!isInstructor){
             credentials.user_role = 2
-            // console.log("Client: ",credentials)
             axios.post('https://ft-anywhere-fitness-3.herokuapp.com/api/auth/register', credentials)
             .then(res => {
                 console.log(res)
@@ -85,7 +82,6 @@ const Signup = () => {
 
     const handleChange = (e) => {
         const {name, value, checked, type} = e.target
-
 
         if(type === 'checkbox'){
             checked === true ? setInstructor(true) : setInstructor(false);
@@ -121,25 +117,25 @@ const Signup = () => {
                     <form onSubmit={handleSubmit}>
 
                         <div className='col'>
-                            <div className='input-div'>
+                            <div>
                                 <label>
                                     Name
                                     <input type='text' name='user_name' id='user_name' onChange={handleChange} value={credentials.user_name} />
                                 </label>
                             </div>
-                            <div className='input-div'>
+                            <div>
                                 <label>
                                     Email
                                     <input type='user_email' name='user_email' id='user_email' onChange={handleChange} value={credentials.user_email} />
                                 </label>
                             </div>
-                            <div className='input-div'>
+                            <div>
                                 <label>
                                     Username
                                     <input type='text' name='user_username' id='user_username' onChange={handleChange} value={credentials.user_username} />
                                 </label>
                             </div>
-                            <div className='input-div'>
+                            <div>
                                 <label>
                                     Password
                                     <input type='password' name='user_password' id='user_password' onChange={handleChange} value={credentials.user_password} />
@@ -152,7 +148,7 @@ const Signup = () => {
                                 <button disabled={buttonDisabled} className='md-button'>Sign up</button>
                             </div>
 
-                            <div className='input-div'>
+                            <div>
                                 <p>Already have an account? <Link to='/login'>Login</Link></p>
                             </div>
                         </div>

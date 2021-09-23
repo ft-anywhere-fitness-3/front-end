@@ -16,14 +16,7 @@ const Course = (props) => {
     }
 
     const handleDelete = (e) => {
-        e.preventDefault();
-        axiosWithAuth()
-        .delete(`/classes/${course.class_id}`)
-        .then(res => {
-            setAvailableClasses(availableClasses.filter(item => item.class_id !== course.class_id))
-            // push('/instructor')
-        })
-        .catch(err => alert(err))
+       push(`/class-form/delete/${course.class_id}`)
     }
 
     return(
@@ -31,13 +24,13 @@ const Course = (props) => {
         <div className='class-card'>
             <h2>{course.class_name}</h2>
             <p><strong>Class Type:</strong> {course.class_type}</p>
-            <p>{course.class_startTime}</p>
+            <p><strong>Start Time:</strong> {course.class_start}</p>
             <p><strong>Duration:</strong> {course.class_duration}</p>
             <p><strong>Location:</strong> {course.class_location}</p>
             <p><strong>Attendees:</strong> {course.attendees}/{course.class_max_size}</p>
             </div>
-            <button className='md-button' onClick={handleEdit} >Edit</button>
-            <button className='md-button' onClick={handleDelete} >Delete</button>
+            <button className='md-button' onClick={() => push(`/class-form/edit/${course.class_id}`)} >Edit</button>
+            <button className='md-button' onClick={() => push(`/class-form/delete/${course.class_id}`)} >Delete</button>
         </div>
     )
 }

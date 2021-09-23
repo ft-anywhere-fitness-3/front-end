@@ -53,19 +53,19 @@ const ClassForm = (props) => {
                     <h2>New Class</h2>
                     <form onSubmit={handleSubmit}>
                         <div className='col'>
-                            <div className='input-div'>
+                            <div>
                                 <label>
                                     Class Name
                                     <input type='text' name='class_name' id='class_name' onChange={handleChange} value={classForm.class_name} />
                                 </label>
                             </div>
-                            <div className='input-div'>
+                            <div>
                                 <label>
                                     Type
                                     <input type='text' name='class_type' id='class_type' onChange={handleChange} value={classForm.class_type} />
                                 </label>
                             </div>
-                            <div className='input-div'>
+                            <div>
                                 <label>
                                     Start Time
                                     <input type='text' name='class_start' id='class_start' onChange={handleChange} value={classForm.class_start} />
@@ -82,19 +82,19 @@ const ClassForm = (props) => {
                                     </select>
                                 </label>
                             </div>
-                            <div className='input-div'>
+                            <div>
                                 <label>
                                     Intensity Level
                                     <input type='number' name='class_level' id='class_level' onChange={handleChange} value={classForm.class_level} />
                                 </label>
                             </div>
-                            <div className='input-div'>
+                            <div>
                                 <label>
                                     Location
                                     <input type='text' name='class_location' id='class_location' onChange={handleChange} value={classForm.class_location} />
                                 </label>
                             </div>
-                            <div className='input-div'>
+                            <div>
                                 <label>
                                     Max Capacity
                                     <input type='number' name='class_max_size' id='class_max_size' onChange={handleChange} value={classForm.class_max_size} />
@@ -104,7 +104,7 @@ const ClassForm = (props) => {
                             <div className='back-div'>
                                 <Link to='/instructor' className='button'>Back</Link>
                             </div>
-                            <div className='input-div'>
+                            <div>
                                 <button className='md-button'>Post</button>
                             </div>
                         </div>

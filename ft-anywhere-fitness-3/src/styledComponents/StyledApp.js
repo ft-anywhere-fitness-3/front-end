@@ -229,5 +229,20 @@ input:hover {
   opacity: 0;
 }
 
+#delete {
+  background-color: #df4759;
+}
+
+.modal {
+  display:flex;
+  flex-flow: column;
+  align-items: center;
+}
+
+.errMsg {
+  font-weight: bolder;
+  color: #df4759;
+}
+
 `
 export default StyledApp;

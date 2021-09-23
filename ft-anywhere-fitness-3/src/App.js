@@ -12,6 +12,8 @@ import StyledApp from './styledComponents/StyledApp';
 import Client from './components/Client'
 import EditClassForm from './components/EditClassForm';
 import OnboardingInstructor from './components/OnboardingInstructor';
+import OnboardingClient from './components/OnboardingClient';
+import DeleteCourseModal from './components/DeleteCourseModal';
 
 import PrivateRoute from './components/PrivateRoute';
 import InstructorRoute from './components/InstructorRoute';
@@ -26,10 +28,17 @@ function App() {
       <Header isLoggedIn={isLoggedIn} setLoggedIn={setLoggedIn} />
       <Switch>
         {/* These routes will need to be made into private routes eventually */}
+        
+        <Route path='/client/welcome'>
+          <OnboardingClient />
+        </Route>
+
         <Route path='/client'>
           <Client availableClasses={availableClasses} setAvailableClasses={setAvailableClasses} />
         </Route>
 
+        <InstructorRoute path='/class-form/delete/:id' component={DeleteCourseModal} availableClasses={availableClasses} setAvailableClasses={setAvailableClasses}/>
+        
         <InstructorRoute path='/class-form/edit/:id' component={EditClassForm} availableClasses={availableClasses} setAvailableClasses={setAvailableClasses}/>
 
         <InstructorRoute path='/class-form' component={ClassForm} availableClasses={availableClasses} setAvailableClasses={setAvailableClasses} />
