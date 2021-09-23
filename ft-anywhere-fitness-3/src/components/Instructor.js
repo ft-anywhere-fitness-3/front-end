@@ -9,21 +9,24 @@ import axiosWithAuth from "./utils/axiosWithAuth";
 const Instructor = (props) => {
     const { availableClasses, setAvailableClasses } = props;
     const { push } = useHistory();
-    useEffect(() => {
+    useEffect(() => {  
         axiosWithAuth()
         .get('/classes')
-        .then(res => setAvailableClasses(res.data))
+        .then(res => {
+            console.log("Get Classes: ",res.data)
+            setAvailableClasses(res.data)
+        })
         .catch(err => alert(err))
     },[])
 
     return (
         <StyledInstructor>
             <div className='container' >
-                           <Link to='./class-form'> Post a Class </Link>
+              <Link to='./class-form'> Post a Class </Link>
             <div className='classes-list-wrapper'>
                 {availableClasses.map((item, index) =>
-                 <Course key={index} course={item} />
-                 )}
+                  <Course key={index} course={item} availableClasses={availableClasses} setAvailableClasses={setAvailableClasses} />
+                )}
             
             </div>
             </div>
