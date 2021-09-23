@@ -66,7 +66,8 @@ const Signup = () => {
             axios.post('https://ft-anywhere-fitness-3.herokuapp.com/api/auth/register', {...credentials, user_role: 1})
             .then(res => {
                 console.log(res)
-                push('/login');
+                localStorage.setItem("message", res.data.message)
+                push('/instructor/welcome');
             })
             .catch(err => alert(err))
         } else if (!isInstructor){
@@ -74,8 +75,8 @@ const Signup = () => {
             // console.log("Client: ",credentials)
             axios.post('https://ft-anywhere-fitness-3.herokuapp.com/api/auth/register', credentials)
             .then(res => {
-                console.log(res.data.message)
-                push('/login');
+                console.log(res)
+                push('/client/welcome');
             })
             .catch(err => alert(err))
         }

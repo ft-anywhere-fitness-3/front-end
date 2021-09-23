@@ -19,13 +19,11 @@ const Login = (props) => {
 
   const login = e => {
     e.preventDefault();
-    console.log(credentials)
 
     axios
       .post('https://ft-anywhere-fitness-3.herokuapp.com/api/auth/login', credentials)
       .then(res => {
         setLoggedIn(true)
-        console.log(res.data)
         if(res.data.user_role === 1){
           localStorage.setItem("token", res.data.token);
           localStorage.setItem("user_role", res.data.user_role);

@@ -10,9 +10,12 @@ import Header from './components/Header';
 import Home from './components/Home';
 import StyledApp from './styledComponents/StyledApp';
 import Client from './components/Client'
+import EditClassForm from './components/EditClassForm';
+import OnboardingInstructor from './components/OnboardingInstructor';
 
 import PrivateRoute from './components/PrivateRoute';
 import InstructorRoute from './components/InstructorRoute';
+
 
 function App() {
   const [availableClasses, setAvailableClasses] = useState([]);
@@ -27,7 +30,13 @@ function App() {
           <Client availableClasses={availableClasses} setAvailableClasses={setAvailableClasses} />
         </Route>
 
+        <InstructorRoute path='/class-form/edit/:id' component={EditClassForm} availableClasses={availableClasses} setAvailableClasses={setAvailableClasses}/>
+
         <InstructorRoute path='/class-form' component={ClassForm} availableClasses={availableClasses} setAvailableClasses={setAvailableClasses} />
+
+        <Route path='/instructor/welcome'>
+          <OnboardingInstructor />
+        </Route>
 
         <InstructorRoute path='/instructor' component={Instructor} availableClasses={availableClasses} setAvailableClasses={setAvailableClasses} />
 

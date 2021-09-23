@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axiosWithAuth from './utils/axiosWithAuth';
 import { Link } from 'react-router-dom'
-import { useHistory } from 'react-router';
+import { useHistory, useParams } from 'react-router';
 
 import StyledClassForm from '../styledComponents/StyledClassForm';
 
@@ -15,33 +15,43 @@ const initialState = {
     class_max_size: ''
 }
 
-const ClassForm = (props) => {
-    const instructorId = localStorage.getItem("instructor_id");
-
-    const [classForm, setclassForm] = useState(initialState);
+const EditClassForm = (props) => {
+    const [classForm, setClassForm] = useState(initialState);
     const { availableClasses, setAvailableClasses } = props;
     const { push } = useHistory();
+	const { id } = useParams();
+
+    useEffect(() => {
+		axiosWithAuth()
+        .get(`/classes/${id}`)
+		.then(res => {
+            console.log(res)
+            setClassForm(res.data)
+        })
+		.catch(err => console.log(err))
+	},[])
 
     const handleChange = (e) => {
-        setclassForm({
+        setClassForm({
             ...classForm,
             [e.target.name]: e.target.value
         })
     }
 
+    // const saveEdit = () => {
+        
+    // }
+
     const handleSubmit = (e) => {
         e.preventDefault();
-
         axiosWithAuth()
-        .post('/classes', {
-            ...classForm,
-            instructor_id: instructorId,
-            class_max_size: parseInt(classForm.class_max_size),
-            class_level: parseInt(classForm.class_level)
-        })
+        .put(`/classes/${id}`, classForm)
         .then(res => {
-            setAvailableClasses([...availableClasses, res.data ])
-            push('/instructor');
+            console.log(res)
+            const newClasses = availableClasses.filter((item) => item.class_id !== id)
+            newClasses.push(res.data)
+            setAvailableClasses(newClasses)
+            push('/instructor')
         })
         .catch(err => alert(err))
     }
@@ -50,7 +60,7 @@ const ClassForm = (props) => {
         <StyledClassForm>
             <div className='container'>
                 <div className='row'>
-                    <h2>New Class</h2>
+                    <h2>Edit Class</h2>
                     <form onSubmit={handleSubmit}>
                         <div className='col'>
                             <div className='input-div'>
@@ -105,7 +115,7 @@ const ClassForm = (props) => {
                                 <Link to='/instructor' className='button'>Back</Link>
                             </div>
                             <div className='input-div'>
-                                <button className='md-button'>Post</button>
+                                <button className='md-button'>Save</button>
                             </div>
                         </div>
                     </form>
@@ -115,4 +125,4 @@ const ClassForm = (props) => {
     )
 }
 
-export default ClassForm;
+export default EditClassForm;
