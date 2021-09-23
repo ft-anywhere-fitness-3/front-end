@@ -71,18 +71,20 @@ nav a {
   width: 115px;
 }
 
- ${'' /* .items-list-wrapper {
-  margin-top: 36px;
+ .classes-list-wrapper {
+  margin-top: 16px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-} */}
+}
 
-${'' /* .item-card {
+.class-card {
   width: 250px;
-  margin: 0 10px 32px;
+  margin: 25px 15px;
   cursor: pointer;
-} */}
+  text-align: left;
+  border-top: .1rem solid;
+}
 
 .container {
   width: 35%;
@@ -130,6 +132,7 @@ input:hover {
   position: relative;
   display: inline-block;
   box-sizing: border-box;
+  width: 115px;
   margin: 0 8px;
   border: none;
   border-radius: 2px;
