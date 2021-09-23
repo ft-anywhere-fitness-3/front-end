@@ -17,7 +17,7 @@ const OnboardingClient = () => {
     </ol>
     <p>Once you've found a Class you would like to attend, you can reserve your spot through the app.
      If needed, you can even reschedule or cancel your current reservation from the app.</p>
-     <Link to='/client'>Skip</Link>
+     <Link to='/login'>Get Started!</Link>
 </div>
     )
 }

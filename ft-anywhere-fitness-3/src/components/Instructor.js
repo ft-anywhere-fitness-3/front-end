@@ -27,7 +27,6 @@ const Instructor = (props) => {
                 {availableClasses.map((item, index) =>
                   <Course key={index} course={item} availableClasses={availableClasses} setAvailableClasses={setAvailableClasses} />
                 )}
-            
             </div>
             </div>
         </StyledInstructor>
