@@ -22,10 +22,13 @@ const Instructor = (props) => {
     return (
         <StyledInstructor>
             <div className='container' >
-                <Link to='./class-form'> Post a Class </Link>
+              <Link to='./class-form'> Post a Class </Link>
+            <div className='classes-list-wrapper'>
+                {availableClasses.map((item, index) =>
+                  <Course key={index} course={item} availableClasses={availableClasses} setAvailableClasses={setAvailableClasses} />
+                )}
+            
             </div>
-            <div>
-                {availableClasses.map((item, index) => <Course key={index} course={item} availableClasses={availableClasses} setAvailableClasses={setAvailableClasses} />)}
             </div>
         </StyledInstructor>
     )

@@ -28,14 +28,16 @@ const Course = (props) => {
 
     return(
         <div>
+        <div className='class-card'>
             <h2>{course.class_name}</h2>
-            <p>{course.class_type}</p>
+            <p><strong>Class Type:</strong> {course.class_type}</p>
             <p>{course.class_startTime}</p>
-            <p>{course.class_duration}</p>
-            <p>{course.class_location}</p>
-            <p>{course.attendees}/{course.class_max_size} attendees</p>
-            <button onClick={handleEdit} >Edit</button>
-            <button onClick={handleDelete} >Delete</button>
+            <p><strong>Duration:</strong> {course.class_duration}</p>
+            <p><strong>Location:</strong> {course.class_location}</p>
+            <p><strong>Attendees:</strong> {course.attendees}/{course.class_max_size}</p>
+            </div>
+            <button className='md-button' onClick={handleEdit} >Edit</button>
+            <button className='md-button' onClick={handleDelete} >Delete</button>
         </div>
     )
 }
