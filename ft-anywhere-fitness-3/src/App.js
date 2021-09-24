@@ -14,12 +14,9 @@ import EditClassForm from './components/EditClassForm';
 import OnboardingInstructor from './components/OnboardingInstructor';
 import OnboardingClient from './components/OnboardingClient';
 import DeleteCourseModal from './components/DeleteCourseModal';
-import SearchBar from './components/SearchBar/SearchBar';
 import PrivateRoute from './components/PrivateRoute';
 import InstructorRoute from './components/InstructorRoute';
 import ClientRoute from './components/ClientRoute';
-import Course from './components/Course';
-
 
 function App() {
   const [availableClasses, setAvailableClasses] = useState([]);
