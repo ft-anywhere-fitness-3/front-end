@@ -1,14 +1,10 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
-import { Link } from "react-router-dom";
-import { useHistory } from "react-router";
 import StyledClient from '../styledComponents/StyledClient';
 import axiosWithAuth from "./utils/axiosWithAuth";
 import Reserve from "./Reserve";
 
 const Client = () => {
     const [availableClasses, setAvailableClasses] = useState([]);
-    const { push } = useHistory();
 
     useEffect(() => {
         axiosWithAuth()
@@ -18,7 +14,7 @@ const Client = () => {
             setAvailableClasses(res.data)
         })
         .catch(err => alert(err))
-    },[])
+    },[availableClasses])
 
     return (
         <StyledClient >

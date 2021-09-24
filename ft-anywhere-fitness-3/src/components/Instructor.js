@@ -14,7 +14,6 @@ const Instructor = (props) => {
         axiosWithAuth()
         .get('/classes')
         .then(res => {
-            console.log("Get Classes: ",res.data)
             setAvailableClasses(res.data)
         })
         .catch(err => alert(err))
