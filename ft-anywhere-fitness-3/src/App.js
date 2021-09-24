@@ -14,25 +14,35 @@ import EditClassForm from './components/EditClassForm';
 import OnboardingInstructor from './components/OnboardingInstructor';
 import OnboardingClient from './components/OnboardingClient';
 import DeleteCourseModal from './components/DeleteCourseModal';
-
+import SearchBar from './components/SearchBar/SearchBar';
 import PrivateRoute from './components/PrivateRoute';
 import InstructorRoute from './components/InstructorRoute';
 import ClientRoute from './components/ClientRoute';
+import Course from './components/Course';
 
 
 function App() {
   const [availableClasses, setAvailableClasses] = useState([]);
   const [isLoggedIn, setLoggedIn] = useState(false);
+  const [searchTerm, setSearchTerm] = useState('');
+
+  const getFilteredSearch = () => {
+    const filteredSearch = availableClasses.filter(course => {
+      return course.searchType.toLowerCase().includes(searchTerm.toLowerCase())
+    })
+    return filteredSearch
+  }
 
   return (
     <StyledApp className='App'>
       <Header isLoggedIn={isLoggedIn} setLoggedIn={setLoggedIn} />
+      <SearchBar setSearchTerm={setSearchTerm} />
       <Switch>
         
         <Route path='/client/welcome'>
           <OnboardingClient />
         </Route>
-
+        
         <ClientRoute path='/client' component={Client} availableClasses={availableClasses} setAvailableClasses={setAvailableClasses} />
 
         <InstructorRoute path='/class-form/delete/:id' component={DeleteCourseModal} availableClasses={availableClasses} setAvailableClasses={setAvailableClasses}/>
