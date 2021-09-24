@@ -1,14 +1,12 @@
-import React, { useEffect } from "react";
-import axios from "axios";
-import axiosWithAuth from "./utils/axiosWithAuth";
-import { Link } from "react-router-dom";
-import { useHistory } from "react-router";
+import React, { useEffect, useState } from "react";
 import StyledClient from '../styledComponents/StyledClient';
-import Course from './Course'
+import axiosWithAuth from "./utils/axiosWithAuth";
+import Reserve from "./Reserve";
 
-const Client = (props) => {
-    const { availableClasses, setAvailableClasses } = props;
-    useEffect(() => {  
+const Client = () => {
+    const [availableClasses, setAvailableClasses] = useState([]);
+
+    useEffect(() => {
         axiosWithAuth()
         .get('/classes')
         .then(res => {
@@ -21,8 +19,9 @@ const Client = (props) => {
     return (
         <StyledClient >
             <div className='container'>
+                {/* <add Link to class search */}
                 {availableClasses.map((item, index) =>
-                    <Course key={index} course={item} availableClasses={availableClasses} setAvailableClasses={setAvailableClasses} />
+                  <Reserve key={index} course={item} />
                 )}
             </div>
         </StyledClient>
