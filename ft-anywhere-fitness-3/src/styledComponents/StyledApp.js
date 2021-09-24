@@ -251,6 +251,16 @@ input:hover {
   justify-content: space-between;
 }
 
+.center {
+  text-align: center;
+}
+
+.container {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+}
+
 .add {
   color:green;
 }
