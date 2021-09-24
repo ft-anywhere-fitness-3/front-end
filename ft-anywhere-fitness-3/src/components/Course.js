@@ -1,13 +1,30 @@
 import React from "react";
 import { useHistory } from 'react-router-dom';
+import axiosWithAuth from "./utils/axiosWithAuth";
 
 const Course = (props) => {
-    const { course } = props;
+    const { course, punchPasses, setPunchPasses } = props;
     const { push } = useHistory();
+
+    const handleAdd = () => {
+        axiosWithAuth()
+        .get(`/classes/${course.class_id}`)
+		.then(res => {
+            setPunchPasses([
+                ...punchPasses,
+                res.data.class_type
+            ])
+        })
+		.catch(err => console.log(err))
+    }
+
     return(
         <div>
         <div className='class-card'>
-            <h2>{course.class_name}</h2>
+            <div className='header-box'>
+                <h2>{course.class_name}</h2>
+                <h2 className='add' onClick={handleAdd} >+</h2>
+            </div>
             <p><strong>Class Type:</strong> {course.class_type}</p>
             <p><strong>Start Time:</strong> {course.class_start}</p>
             <p><strong>Duration:</strong> {course.class_duration}</p>

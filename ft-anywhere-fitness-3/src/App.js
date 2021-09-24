@@ -28,7 +28,7 @@ function App() {
 
   const getFilteredSearch = () => {
     const filteredSearch = availableClasses.filter(course => {
-      return course.className.toLowerCase().includes(searchTerm.toLowerCase())
+      return course.searchType.toLowerCase().includes(searchTerm.toLowerCase())
     })
     return filteredSearch
   }
@@ -37,13 +37,12 @@ function App() {
     <StyledApp className='App'>
       <Header isLoggedIn={isLoggedIn} setLoggedIn={setLoggedIn} />
       <SearchBar setSearchTerm={setSearchTerm} />
-      <Switch> 
-        {/* These routes will need to be made into private routes eventually */}
+      <Switch>
         
         <Route path='/client/welcome'>
           <OnboardingClient />
         </Route>
-
+        
         <ClientRoute path='/client' component={Client} availableClasses={availableClasses} setAvailableClasses={setAvailableClasses} />
 
         <InstructorRoute path='/class-form/delete/:id' component={DeleteCourseModal} availableClasses={availableClasses} setAvailableClasses={setAvailableClasses}/>

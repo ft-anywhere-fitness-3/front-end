@@ -244,5 +244,24 @@ input:hover {
   color: #df4759;
 }
 
+.header-box {
+  width: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+}
+
+.add {
+  color:green;
+}
+
+.punchPasses {
+  margin-top: 50px;
+  width:100%;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+}
+
 `
 export default StyledApp;
