@@ -28,7 +28,6 @@ function App() {
     <StyledApp className='App'>
       <Header isLoggedIn={isLoggedIn} setLoggedIn={setLoggedIn} />
       <Switch>
-        {/* These routes will need to be made into private routes eventually */}
         
         <Route path='/client/welcome'>
           <OnboardingClient />

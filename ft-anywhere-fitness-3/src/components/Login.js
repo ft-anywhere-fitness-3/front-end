@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 const initialState = {
   user_username: 'testInstructor',
-  user_password: 'password'
+  user_password: ''
 }
 
 const Login = (props) => {
