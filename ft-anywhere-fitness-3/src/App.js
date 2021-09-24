@@ -24,21 +24,13 @@ import Course from './components/Course';
 function App() {
   const [availableClasses, setAvailableClasses] = useState([]);
   const [isLoggedIn, setLoggedIn] = useState(false);
-  const [searchTerm, setSearchTerm] = useState('');
-
-  const getFilteredSearch = () => {
-    const filteredSearch = availableClasses.filter(course => {
-      return course.searchType.toLowerCase().includes(searchTerm.toLowerCase())
-    })
-    return filteredSearch
-  }
 
   return (
     <StyledApp className='App'>
+
       <Header isLoggedIn={isLoggedIn} setLoggedIn={setLoggedIn} />
-      <SearchBar setSearchTerm={setSearchTerm} />
+
       <Switch>
-        
         <Route path='/client/welcome'>
           <OnboardingClient />
         </Route>
@@ -69,6 +61,7 @@ function App() {
         
         <Route exact path='/' component={Home} />
       </Switch>
+
     </StyledApp>
   );
 }
