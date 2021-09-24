@@ -4,8 +4,8 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 const initialState = {
-  user_username: 'testInstructor',
-  user_password: ''
+  user_username: 'testClient',
+  user_password: 'password'
 }
 
 const Login = (props) => {
@@ -33,6 +33,7 @@ const Login = (props) => {
         else if (res.data.user_role === 2){
           localStorage.setItem("token", res.data.token);
           localStorage.setItem("user_role", res.data.user_role);
+          localStorage.setItem("client_id", res.data.user_id);
           history.push('/client')
         }
         

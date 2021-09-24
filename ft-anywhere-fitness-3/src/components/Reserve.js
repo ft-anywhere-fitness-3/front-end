@@ -9,12 +9,15 @@ const Reserve = (props) => {
     const [buttonDisabled, setButtonDisabled] = useState(false);
 
     const handleReserve = () => {
-        console.log(reserved.class_max_size, parseInt(reserved.attendees))
+        const clientId = localStorage.getItem('client_id');
+        console.log(clientId)
+        console.log(reserved.class_id)
+        // console.log(reserved.class_max_size, parseInt(reserved.attendees))
         if(reserved.class_max_size === parseInt(reserved.attendees)){
             console.log(reserved.class_max_size,'/',parseInt(reserved.attendees))
         } else {
             axiosWithAuth()
-            .post(`/classes/${reserved.class_id}`, {class_id: reserved.class_id, user_id: 1})
+            .post(`/reservation/${reserved.class_id}`, {class_id: reserved.class_id, user_id: parseInt(clientId)})
             .then(res => {
                 setButtonDisabled(true)
                 // console.log(res)
@@ -32,7 +35,7 @@ const Reserve = (props) => {
 
     const handleCancel = () => {
         axiosWithAuth()
-        .delete(`/classes/${reserved.class_id}`, {class_id: reserved.class_id, user_id: 1})
+        .delete(`/reservation/${reserved.class_id}`, {class_id: reserved.class_id, user_id: 1})
 		.then(res => {
             setButtonDisabled(false)
             console.log(res)

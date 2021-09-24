@@ -1,7 +1,9 @@
 .search-bar-wrapper {
     border-bottom: 1px solid #3333;
-    height: 60px;
+    width:100%;
+    height: auto;
     display: flex;
+    flex-flow: row nowrap;
     justify-content: space-around;
     align-items: center;
     background: #ffffff;
@@ -15,6 +17,8 @@
     color: #262626;
   }
   .search-selector {
-    width: 150px;
+    /* width: 150px; */
     font-size: 14px;
+    display: flex;
+    flex-flow: row nowrap;
   }
