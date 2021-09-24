@@ -14,7 +14,7 @@ const Client = () => {
             setAvailableClasses(res.data)
         })
         .catch(err => alert(err))
-    },[availableClasses])
+    },[])
 
     return (
         <StyledClient >
