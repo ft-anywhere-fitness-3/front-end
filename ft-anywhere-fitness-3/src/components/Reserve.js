@@ -31,14 +31,20 @@ const Reserve = (props) => {
     }
 
     const handleCancel = () => {
-        setButtonDisabled(false)
-        // axiosWithAuth()
-        // .post(`/classes/${reserved.class_id}`, {class_id: reserved.class_id, user_id: 1})
-		// .then(res => {
-        //     setButtonDisabled(true)
-        //     console.log(res)
-        // })
-		// .catch(err => console.log(err))
+        axiosWithAuth()
+        .delete(`/classes/${reserved.class_id}`, {class_id: reserved.class_id, user_id: 1})
+		.then(res => {
+            setButtonDisabled(false)
+            console.log(res)
+        })
+        .then(
+            axiosWithAuth()
+            .get(`/classes/${course.class_id}`)
+            .then(res => {
+            setReserved(res.data)
+        })
+            .catch(err => console.log(err)))
+        .catch(err => console.log(err))
     }
 
     return(
