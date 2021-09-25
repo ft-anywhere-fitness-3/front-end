@@ -4,8 +4,8 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 const initialState = {
-  user_username: 'testClient',
-  user_password: 'password'
+  user_username: '',
+  user_password: ''
 }
 
 const Login = (props) => {
